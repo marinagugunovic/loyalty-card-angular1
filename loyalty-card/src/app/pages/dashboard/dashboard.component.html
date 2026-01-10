@@ -1,6 +1,13 @@
 <h2>Dashboard</h2>
 <p>Ulogovana si ✅</p>
 
+
 <p><strong>Token:</strong> {{ token }}</p>
+
+<button (click)="ping()">Ping API</button>
+<pre>{{ stringify(lastResponse) }}</pre>
+
+
+
 
 <button (click)="logout()">Logout</button>
