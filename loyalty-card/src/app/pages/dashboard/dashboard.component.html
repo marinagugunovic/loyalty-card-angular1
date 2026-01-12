@@ -1,12 +1,15 @@
 <section class="dash">
-  <div class="card">
+  <div class="dash__card card">
     <div class="card__inner">
       <div class="badge">DASHBOARD</div>
       <h2 class="h1">Your dashboard</h2>
       <p class="muted">You’re logged in and ready to earn rewards.</p>
 
+      <div class="divider"></div>
+
       <div class="dash__actions">
         <button class="btn btn-primary" type="button" (click)="ping()">Ping API</button>
+        <span class="dash__hint">Check connection &amp; see response payload.</span>
       </div>
 
       <div class="result" *ngIf="lastResponse">

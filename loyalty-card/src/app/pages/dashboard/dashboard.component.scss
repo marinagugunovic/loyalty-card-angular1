@@ -1,4 +1,5 @@
 .dash {
+  width: 100%;
   display: grid;
   place-items: center;
   min-height: calc(100vh - 120px);
@@ -7,19 +8,18 @@
 .dash__card {
   width: 980px;
   max-width: 92vw;
-}
 
-.dash__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-}
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 34px;
 
-.dash__subtitle {
-  margin-top: 6px;
-  color: var(--text-muted);
-  font-weight: 600;
+  /* zelena linija - isto kao login/register */
+  border: 2px solid rgba(170, 220, 190, 0.9);
+
+  /* mekani shadow - isto kao login/register */
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.08),
+    0 0 0 6px rgba(170, 220, 190, 0.18);
 }
 
 .divider {
@@ -28,32 +28,12 @@
   margin: 18px 0;
 }
 
-.info {
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: var(--radius-lg);
-  padding: 18px;
-  background: rgba(255, 255, 255, 0.65);
-  box-shadow: var(--shadow-sm);
-}
-
-.info__label {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  font-weight: 900;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-}
-
-.info__value {
-  font-weight: 900;
-  font-size: 18px;
-}
-
 .dash__actions {
-  margin-top: 18px;
+  margin-top: 6px;
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .dash__hint {
@@ -73,4 +53,10 @@
   min-height: 54px;
   overflow: auto;
   margin: 0;
+}
+
+.dash__actions .btn.btn-primary:hover {
+  background: linear-gradient(135deg, #d4af37, #f3d57a);
+  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.45);
+  transform: translateY(-1px);
 }
