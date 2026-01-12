@@ -1,4 +1,24 @@
-<h2>Login</h2>
-<p>Ovo je login stranica</p>
+<section class="auth">
+  <div class="auth__card card">
+    <div class="card__inner">
+      <div class="badge">WELCOME BACK</div>
+     <h2 class="h1">Sign in</h2>
+      <p class="muted">Access your loyalty rewards in one place.</p>
 
-<button (click)="login()">Login</button>
+      <label class="field">
+        <span class="field__label">EMAIL</span>
+        <input class="input" type="email" placeholder="you@example.com" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">PASSWORD</span>
+        <input class="input" type="password" placeholder="••••••••" />
+      </label>
+
+      <div class="auth__footer">
+        <a class="auth__link" routerLink="/register">Create account</a>
+        <button class="btn btn-primary" type="button" (click)="login()">Login</button>
+      </div>
+    </div>
+  </div>
+</section>

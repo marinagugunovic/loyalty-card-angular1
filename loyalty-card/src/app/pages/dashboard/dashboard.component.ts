@@ -1,40 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../core/auth/auth.service';
-import { TestApiService } from '../../core/api/test-api.service';
-
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  token: string | null = null;
+
+export class DashboardComponent {
   lastResponse: any = null;
 
-  constructor(
-    private auth: AuthService,
-    private api: TestApiService,
-    private router: Router
-  ) {}
-  stringify(value: any): string {
-  return value ? JSON.stringify(value, null, 2) : '';
-}
+  constructor(private http: HttpClient) {}
 
-
-  ngOnInit(): void {
-    this.token = this.auth.getToken();
-  }
-
+  // klik na "Ping API"
   ping(): void {
-    this.api.ping().subscribe({
+    this.http.get('https://httpbin.org/get').subscribe({
       next: (res) => (this.lastResponse = res),
       error: (err) => (this.lastResponse = err),
     });
   }
 
-  logout(): void {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+  stringify(data: any): string {
+    return JSON.stringify(data, null, 2);
   }
 }

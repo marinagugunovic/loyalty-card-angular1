@@ -1,0 +1,84 @@
+.topbar {
+  background: #fff;
+  border-bottom: 3px solid rgba(170, 220, 190, 0.95); 
+}
+
+
+.nav__link:hover {
+  background: rgba(232, 137, 168, 0.12);
+}
+
+.nav__link.is-active {
+  background: rgba(232, 137, 168, 0.18);
+  border: 1px solid rgba(31, 157, 119, 0.35); /* zeleni akcent */
+}
+
+.topbar__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.brand__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.22);
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 800;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+/* HOVER -> zlatno */
+.nav__link:hover {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 10px 22px rgba(212, 175, 55, 0.18);
+}
+
+/* AKTIVNO (kliknuto) */
+.nav__link.is-active {
+  background: rgba(232, 137, 168, 0.22);
+  border: 1px solid rgba(232, 137, 168, 0.40);
+}
+
+
+.nav__link.is-active:hover {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 10px 22px rgba(212, 175, 55, 0.18);
+}
+
+
+/* layout */
+.page {
+  min-height: calc(100vh - 72px); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; 
+}

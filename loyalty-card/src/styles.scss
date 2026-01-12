@@ -1,5 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
-a.active {
-  font-weight: bold;
-  text-decoration: underline;
+:root{
+  --bg-1: #fff6f9;       /* vrlo svetlo roze */
+  --bg-2: #fdecef;       /* roze haze */
+  --card: #ffffff;
+  --text-main: #151517;
+  --text-muted: rgba(21,21,23,.62);
+
+  --pink: #e889a8;       /* roze akcenat */
+  --green: #1f9d77;      /* zeleni akcenat */
+  --gold: #d4af37;       /* zlatni detalji */
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+
+  --shadow-soft: 0 30px 70px rgba(0,0,0,.10);
+  --shadow-btn: 0 10px 24px rgba(232,137,168,.35);
+}
+
+*{ box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text-main);
+
+  /* background */
+  background:
+    radial-gradient(1200px 600px at 50% 120px, rgba(232,137,168,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg-2), var(--bg-1));
+
+  overflow-x: hidden;
+}
+
+/* mali helperi */
+.h1{ font-size: 44px; line-height: 1.05; margin: 10px 0 8px; font-weight: 900; letter-spacing: -0.02em; }
+.muted{ color: var(--text-muted); margin: 0 0 18px; }
+.badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(212,175,55,.12);
+  border: 1px solid rgba(212,175,55,.35);
+}
+.badge::before{
+  content:"";
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212,175,55,.18);
+}
+
+.card{
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.card__inner{ padding: 34px; }
+
+.input{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  outline: none;
+  background: #fff;
+  font-size: 14px;
+  transition: all .2s ease;
+}
+.input:focus{
+  border-color: rgba(212,175,55,.65);
+  box-shadow: 0 0 0 4px rgba(232,137,168,.18);
+}
+
+.btn{
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.btn-primary{
+  background: var(--pink);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+.btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(232,137,168,.45);
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
 }

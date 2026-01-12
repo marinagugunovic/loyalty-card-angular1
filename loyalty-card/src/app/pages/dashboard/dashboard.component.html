@@ -1,13 +1,17 @@
-<h2>Dashboard</h2>
-<p>Ulogovana si ✅</p>
+<section class="dash">
+  <div class="card">
+    <div class="card__inner">
+      <div class="badge">DASHBOARD</div>
+      <h2 class="h1">Your dashboard</h2>
+      <p class="muted">You’re logged in and ready to earn rewards.</p>
 
+      <div class="dash__actions">
+        <button class="btn btn-primary" type="button" (click)="ping()">Ping API</button>
+      </div>
 
-<p><strong>Token:</strong> {{ token }}</p>
-
-<button (click)="ping()">Ping API</button>
-<pre>{{ stringify(lastResponse) }}</pre>
-
-
-
-
-<button (click)="logout()">Logout</button>
+      <div class="result" *ngIf="lastResponse">
+        <pre class="result__pre">{{ stringify(lastResponse) }}</pre>
+      </div>
+    </div>
+  </div>
+</section>

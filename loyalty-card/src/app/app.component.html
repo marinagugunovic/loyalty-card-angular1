@@ -1,9 +1,19 @@
-<nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-  <a routerLink="/register" routerLinkActive="active">Register</a>
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-</nav>
 
-<div style="padding:12px;">
+<header class="topbar">
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__dot"></span>
+      <span class="brand__name">Loyalty Card</span>
+    </div>
+
+    <nav class="nav">
+      <a routerLink="/login" routerLinkActive="is-active" class="nav__link">Login</a>
+      <a routerLink="/register" routerLinkActive="is-active" class="nav__link">Register</a>
+      <a routerLink="/dashboard" routerLinkActive="is-active" class="nav__link">Dashboard</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
   <router-outlet></router-outlet>
-</div>
+</main>

@@ -1,4 +1,25 @@
-<h2>Register</h2>
-<p>Ovo je register stranica</p>
+<section class="auth">
+  <div class="auth__card card">
+    <div class="card__inner">
+      <div class="badge">WELCOME BACK</div>
+      <h2 class="h1">Welcome back</h2>
+      <p class="muted">Log in to collect points and rewards.</p>
 
-<button (click)="register()">Register</button>
+      <label class="field">
+        <span class="field__label">EMAIL</span>
+        <input class="input" type="email" placeholder="you@example.com" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">PASSWORD</span>
+        <input class="input" type="password" placeholder="••••••••" />
+      </label>
+
+      <div class="auth__footer">
+        <a class="auth__link" routerLink="/register">Create account</a>
+       <button class="btn btn-primary" type="button" (click)="register()">Register</button>
+
+      </div>
+    </div>
+  </div>
+</section>
