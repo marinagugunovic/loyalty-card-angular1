@@ -16,6 +16,7 @@ export class DashboardComponent {
 
   // klik na "Ping API"
   ping(): void {
+    // ako nemaš backend, koristi jednostavan public endpoint da testiramo
     this.http.get('https://httpbin.org/get').subscribe({
       next: (res) => (this.lastResponse = res),
       error: (err) => (this.lastResponse = err),

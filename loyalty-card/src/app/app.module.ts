@@ -13,7 +13,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
     // ✅ ostaje prazno
   ],
   imports: [
@@ -21,14 +20,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AppRoutingModule,
     HttpClientModule,
 
-    // ✅ standalone komponente idu u imports
+    // ✅ standalone ide u imports
     AppComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent
   ],
   providers: [
-    // ✅ interceptor
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
