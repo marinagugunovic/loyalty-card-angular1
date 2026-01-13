@@ -1,19 +1,25 @@
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" routerLink="/dashboard">
+      Beauty Loyalty
+    </a>
 
-<header class="topbar">
-  <div class="topbar__inner">
-    <div class="brand">
-      <span class="brand__dot"></span>
-      <span class="brand__name">Loyalty Card</span>
-    </div>
+    <nav class="header__nav">
+      <!-- Kad NISAM ulogovana -->
+      <ng-container *ngIf="!isAuthed">
+        <a class="header__link" routerLink="/login" routerLinkActive="is-active">Login</a>
+        <a class="header__link" routerLink="/register" routerLinkActive="is-active">Register</a>
+      </ng-container>
 
-    <nav class="nav">
-      <a routerLink="/login" routerLinkActive="is-active" class="nav__link">Login</a>
-      <a routerLink="/register" routerLinkActive="is-active" class="nav__link">Register</a>
-      <a routerLink="/dashboard" routerLinkActive="is-active" class="nav__link">Dashboard</a>
+      <!-- Kad JESAM ulogovana -->
+      <ng-container *ngIf="isAuthed">
+        <a class="header__link" routerLink="/dashboard" routerLinkActive="is-active">Dashboard</a>
+        <button class="header__btn" type="button" (click)="logout()">Logout</button>
+      </ng-container>
     </nav>
   </div>
 </header>
 
-<main class="page">
+<main class="app">
   <router-outlet></router-outlet>
 </main>

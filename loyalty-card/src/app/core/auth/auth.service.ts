@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'auth_token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   setToken(token: string): void {
@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.getToken() !== null;
+    return !!this.getToken();
   }
 
   logout(): void {
