@@ -99,5 +99,13 @@ body{
 }
 html, body {
   height: 100%;
-  overflow: hidden;
 }
+
+body {
+  overflow-y: auto; /* default: stranice mogu skrolovati ako treba */
+}
+
+body.no-scroll {
+  overflow: hidden; /* login/register */
+}
+

@@ -5,9 +5,9 @@
       <h2 class="h1">Your dashboard</h2>
       <p class="muted">Track points, tiers, and rewards in one place.</p>
 
-      <!-- TOP SUMMARY -->
       <div class="divider"></div>
 
+      <!-- TOP SUMMARY -->
       <div class="dash__grid">
         <div class="info">
           <div class="info__label">POINTS</div>
@@ -18,7 +18,19 @@
         <div class="info">
           <div class="info__label">TIER</div>
           <div class="info__value">{{ tier }}</div>
-          <div class="info__meta">{{ pointsToNextTier }} to {{ nextTier }}</div>
+
+          <div class="info__meta">
+            {{ pointsToNextTier }} to {{ nextTier }}
+          </div>
+
+          <!-- Progress bar -->
+          <div class="progress" role="progressbar"
+               [attr.aria-valuenow]="tierProgressPercent"
+               aria-valuemin="0" aria-valuemax="100"
+               [attr.aria-label]="'Tier progress ' + tierProgressPercent + '%'">
+            <div class="progress__bar" [style.width.%]="tierProgressPercent"></div>
+          </div>
+          <div class="progress__text">{{ tierProgressPercent }}% to {{ nextTier }}</div>
         </div>
 
         <div class="info dash__card-preview">
@@ -35,16 +47,22 @@
         </div>
       </div>
 
-      <!-- REWARDS -->
       <div class="divider"></div>
 
+      <!-- REWARDS -->
       <div class="dash__section">
         <div class="dash__section-top">
           <h3 class="h2">Rewards</h3>
           <p class="muted">Redeem your points for beauty perks.</p>
         </div>
 
-        <div class="rewards">
+        <!-- Empty state -->
+        <div class="empty" *ngIf="rewards.length === 0">
+          <div class="empty__title">No rewards yet</div>
+          <div class="empty__text">Earn points to unlock rewards here.</div>
+        </div>
+
+        <div class="rewards" *ngIf="rewards.length > 0">
           <div class="reward" *ngFor="let r of rewards">
             <div class="reward__left">
               <div class="reward__title">
@@ -61,7 +79,7 @@
                 type="button"
                 (click)="redeem(r)"
                 [disabled]="!canRedeem(r)"
-                title="Redeem reward"
+                [title]="redeemHint(r)"
               >
                 Redeem
               </button>
@@ -70,9 +88,9 @@
         </div>
       </div>
 
-      
       <div class="divider"></div>
 
+      <!-- API PING (postojeće) -->
       <div class="dash__actions">
         <button class="btn btn-primary" type="button" (click)="ping()">Ping API</button>
         <span class="dash__hint">Check connection &amp; see response payload.</span>
@@ -82,5 +100,7 @@
         <pre class="result__pre">{{ stringify(lastResponse) }}</pre>
       </div>
     </div>
+
+  
   </div>
 </section>
