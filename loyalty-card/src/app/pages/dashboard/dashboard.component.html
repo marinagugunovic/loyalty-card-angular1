@@ -3,8 +3,74 @@
     <div class="card__inner">
       <div class="badge">DASHBOARD</div>
       <h2 class="h1">Your dashboard</h2>
-      <p class="muted">You’re logged in and ready to earn rewards.</p>
+      <p class="muted">Track points, tiers, and rewards in one place.</p>
 
+      <!-- TOP SUMMARY -->
+      <div class="divider"></div>
+
+      <div class="dash__grid">
+        <div class="info">
+          <div class="info__label">POINTS</div>
+          <div class="info__value">{{ points }}</div>
+          <div class="info__meta">Available points</div>
+        </div>
+
+        <div class="info">
+          <div class="info__label">TIER</div>
+          <div class="info__value">{{ tier }}</div>
+          <div class="info__meta">{{ pointsToNextTier }} to {{ nextTier }}</div>
+        </div>
+
+        <div class="info dash__card-preview">
+          <div class="info__label">LOYALTY CARD</div>
+          <div class="card-mini">
+            <div class="card-mini__top">
+              <div class="card-mini__brand">Beauty Loyalty</div>
+              <div class="card-mini__tier">{{ tier }}</div>
+            </div>
+            <div class="card-mini__name">{{ customerName }}</div>
+            <div class="card-mini__id">{{ memberId }}</div>
+            <div class="card-mini__barcode" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REWARDS -->
+      <div class="divider"></div>
+
+      <div class="dash__section">
+        <div class="dash__section-top">
+          <h3 class="h2">Rewards</h3>
+          <p class="muted">Redeem your points for beauty perks.</p>
+        </div>
+
+        <div class="rewards">
+          <div class="reward" *ngFor="let r of rewards">
+            <div class="reward__left">
+              <div class="reward__title">
+                {{ r.title }}
+                <span class="pill" *ngIf="r.tag">{{ r.tag }}</span>
+              </div>
+              <div class="reward__desc">{{ r.description }}</div>
+            </div>
+
+            <div class="reward__right">
+              <div class="reward__cost">{{ r.cost }} pts</div>
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="redeem(r)"
+                [disabled]="!canRedeem(r)"
+                title="Redeem reward"
+              >
+                Redeem
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
       <div class="divider"></div>
 
       <div class="dash__actions">
