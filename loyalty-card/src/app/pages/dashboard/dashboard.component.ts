@@ -17,14 +17,11 @@ type Reward = {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  // --- Existing API ping state -
   lastResponse: any = null;
 
   constructor(private http: HttpClient) {}
 
-  // klik na "Ping API"
   ping(): void {
-    // ako nemaš backend, koristi jednostavan public endpoint da testiramo
     this.http.get('https://httpbin.org/get').subscribe({
       next: (res) => (this.lastResponse = res),
       error: (err) => (this.lastResponse = err),
@@ -57,5 +54,18 @@ export class DashboardComponent {
 
   canRedeem(reward: Reward): boolean {
     return this.points >= reward.cost;
+  }
+
+  redeemHint(reward: Reward): string {
+    if (this.canRedeem(reward)) return `Redeem for ${reward.cost} points`;
+    const missing = reward.cost - this.points;
+    return `Not enough points (need ${missing} more)`;
+  }
+
+  // Progress: koliko si blizu sledećeg tier-a (0–100)
+  get tierProgressPercent(): number {
+    if (!this.tierGoal || this.tierGoal <= 0) return 0;
+    const value = Math.max(0, Math.min(this.points, this.tierGoal));
+    return Math.round((value / this.tierGoal) * 100);
   }
 }

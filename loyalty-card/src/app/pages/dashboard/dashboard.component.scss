@@ -12,13 +12,28 @@
   background: #fff;
   border-radius: var(--radius-lg);
   padding: 34px;
+  position: relative;
+
+  
+  overflow: hidden;
 
   /* match login/register */
   border: 2px solid rgba(170, 220, 190, 0.9);
-  /* mekani shadow - isto kao login/register */
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.08),
     0 0 0 6px rgba(170, 220, 190, 0.18);
+
+ 
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 3px; 
+    background: rgba(170, 220, 190, 0.95);
+  }
 }
 
 .divider {
@@ -64,6 +79,30 @@
   margin-top: 6px;
   color: var(--text-muted);
   font-weight: 700;
+}
+
+/* Progress bar */
+.progress {
+  margin-top: 12px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.progress__bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(170, 220, 190, 0.95), rgba(232, 137, 168, 0.65));
+  transition: width 0.25s ease;
+}
+
+.progress__text {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 .card-mini {
@@ -184,6 +223,25 @@
   color: var(--text-main);
 }
 
+/* Empty state */
+.empty {
+  margin-top: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 18px;
+}
+
+.empty__title {
+  font-weight: 900;
+}
+
+.empty__text {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
 .dash__actions {
   margin-top: 6px;
   display: flex;
@@ -197,7 +255,6 @@
   font-weight: 700;
 }
 
-/* preformat response */
 .result {
   margin-top: 14px;
 }
