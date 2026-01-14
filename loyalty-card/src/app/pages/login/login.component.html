@@ -2,23 +2,37 @@
   <div class="auth__card card">
     <div class="card__inner">
       <div class="badge">WELCOME BACK</div>
-     <h2 class="h1">Sign in</h2>
+      <h2 class="h1">Sign in</h2>
       <p class="muted">Access your loyalty rewards in one place.</p>
 
-      <label class="field">
-        <span class="field__label">EMAIL</span>
-        <input class="input" type="email" placeholder="you@example.com" />
-      </label>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <label class="field">
+          <span class="field__label">EMAIL</span>
+          <input class="input" type="email" placeholder="you@example.com" formControlName="email" />
+          <small class="error" *ngIf="f['email'].touched && f['email'].invalid">
+            Please enter a valid email.
+          </small>
+        </label>
 
-      <label class="field">
-        <span class="field__label">PASSWORD</span>
-        <input class="input" type="password" placeholder="••••••••" />
-      </label>
+        <label class="field">
+          <span class="field__label">PASSWORD</span>
+          <input class="input" type="password" placeholder="••••••••" formControlName="pass" />
+          <small class="error" *ngIf="f['pass'].touched && f['pass'].invalid">
+            Please enter your password.
+          </small>
+        </label>
 
-      <div class="auth__footer">
-        <a class="auth__link" routerLink="/register">Create account</a>
-        <button class="btn btn-primary" type="button" (click)="login()">Login</button>
-      </div>
+        <small class="error" *ngIf="serverError">{{ serverError }}</small>
+
+        <div class="auth__footer">
+          <a class="auth__link" routerLink="/register">Create account</a>
+
+          <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Login</span>
+            <span *ngIf="isSubmitting">Logging in…</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </section>

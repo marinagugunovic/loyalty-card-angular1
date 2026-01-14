@@ -17,6 +17,7 @@ type Reward = {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  // --- Existing API ping state (NE DIRAMO) ---
   lastResponse: any = null;
 
   constructor(private http: HttpClient) {}
@@ -37,9 +38,14 @@ export class DashboardComponent {
   memberId = 'BL-2026-0198';
 
   points = 1280;
+
+  // Tier progression (mock)
   tier = 'Gold';
   nextTier = 'Platinum';
   pointsToNextTier = 720;
+
+  // Ukupno potrebno za sledeći tier (da možemo nacrtati progress bar)
+  tierGoal = 2000;
 
   rewards: Reward[] = [
     { title: 'Free Shipping', description: 'On orders over €25', cost: 300, tag: 'Popular' },
@@ -56,6 +62,7 @@ export class DashboardComponent {
     return this.points >= reward.cost;
   }
 
+  // Tooltip text za disabled dugme
   redeemHint(reward: Reward): string {
     if (this.canRedeem(reward)) return `Redeem for ${reward.cost} points`;
     const missing = reward.cost - this.points;

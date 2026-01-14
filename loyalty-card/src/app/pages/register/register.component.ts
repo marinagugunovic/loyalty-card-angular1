@@ -49,12 +49,22 @@ export class RegisterComponent {
 
     this.isSubmitting = true;
 
-    // fake register -> login behaviour (kao login stranica)
-    setTimeout(() => {
-      this.auth.setToken('fake-jwt-token');
-      this.router.navigate(['/dashboard']);
-      this.isSubmitting = false;
-    }, 350);
+    const fullName = String(this.form.value['fullName']).trim();
+    const parts = fullName.split(' ').filter(Boolean);
+    const firstName = parts[0] || fullName;
+    const lastName = parts.slice(1).join(' ') || 'User';
+
+    const email = String(this.form.value['email']).trim();
+    const pass = String(this.form.value['password']);
+
+    this.auth.signup(firstName, lastName, email, pass).subscribe({
+      next: () => {
+        this.router.navigate(['/dashboard']);
+        this.isSubmitting = false;
+      },
+      error: () => {
+        this.isSubmitting = false;
+      },
+    });
   }
 }
-
