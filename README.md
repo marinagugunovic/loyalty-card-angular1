@@ -69,6 +69,7 @@ Frontend in backend se zaganjata **ločeno** in komunicirata preko REST API-ja.
 - Token se shrani v `localStorage`
 - HTTP Interceptor samodejno doda token v `Authorization` header
 - AuthGuard ščiti dostop do `/dashboard` poti
+<img width="1910" height="1152" alt="image" src="https://github.com/user-attachments/assets/7b482313-0523-4263-90ab-eeb5c9533bde" />
 
 ---
 
@@ -82,6 +83,7 @@ Frontend in backend se zaganjata **ločeno** in komunicirata preko REST API-ja.
 -  Prikaz seznama nagrad (UI)
 -  Frontend–backend komunikacija
 -  JWT zaščita API poti
+<img width="1700" height="1076" alt="image" src="https://github.com/user-attachments/assets/2ce6b98c-4b47-4f06-9af6-8be07526db7d" />
 
 ---
 
