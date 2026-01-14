@@ -7,6 +7,7 @@ registrirajo, prijavijo in spremljajo svoje točke ter nagrade.
 
 Projekt je zasnovan tako, da je **realističen, a enostaven**, in sledi pristopu,
 ki je bil uporabljen pri laboratorijskih vajah.
+<img width="1917" height="1197" alt="image" src="https://github.com/user-attachments/assets/2e69b007-72d5-430b-a24f-0bb7c7475966" />
 
 ---
 
