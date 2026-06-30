@@ -1,94 +1,21 @@
-3. naloga - Flask
-
-
-
-odgovor 3: from flask import Flask, render_template, request, redirect, url_for
-import secrets
-
-app = Flask(__name__)
-
-# Primer pravilne kombinacije
-VALID_USERNAME = "admin"
-VALID_PASSWORD = "1234"
-
-# Shranimo token -> username
-active_users = {}
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-
-        if username == VALID_USERNAME and password == VALID_PASSWORD:
-            random_string = secrets.token_urlsafe(16)
-            active_users[random_string] = username
-
-            return redirect(url_for("success", random_string=random_string))
-
-        else:
-            return redirect(url_for("failure"))
-
-    return render_template("login.html")
-
-
-@app.route("/success/<random_string>/")
-def success(random_string):
-    username = active_users.get(random_string)
-
-    if username is None:
-        return redirect(url_for("failure"))
-
-    return f"zdravo, {username}"
-
-
-@app.route("/failure")
-def failure():
-    return "Napačen username ali password."
-
-
-if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
-
-
-    HTML:   
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Prijava</h2>
-
-    <form method="POST" action="/login">
-        <label>Username:</label>
-        <input type="text" name="username">
-
-        <br><br>
-
-        <label>Password:</label>
-        <input type="password" name="password">
-
-        <br><br>
-
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
-
-python: 
-
-app.run(debug=True, use_reloader=False)
-
-Spomnite se 2. naloge pri flask-vajah: S flask napiˇsite program za login.
-Program naj preveri, da je kombinacija username : password pravilna. Imate torej tri
-funkcije: funkcija na /login ima template login.html. Preko obrazca prejmemo username
-in password. Funkcija naj preveri, ali sta pravilna. Ce sta pravilna, naj uporabnika ˇ
-preusmeri na /success/<token>/<username>, kjer je <token> nakljuˇcno generiran
-string. Na temu linku pa naj spletna stran pozdravi: “zdravo, (username)” (kot na
-vajah). Ce username ali passoword nista OK, pa naj ga preusmeri na ˇ /failure.
+4. naloga - InfluxDB
+Naloga 4:
+a) preberite datoteko ”sensor data.txt” vrstico po vrstico. Vsaka vrstica je sestavljena
+kot meritev ”kanal1,kanal2,kanal3,ˇcas meritve,sensorID”, kjer je sensorID lahko
+[”Sensor1”,”Sensor2”,”Sensor3”]. Uploadajte vse meritve v svojo (unikatno,
+uporabite svoje ime!) databazo na influxdb streˇznik.
+b) s client.query download-ajte meritve kanala1, ki so od ”Sensor1” in je meritev > 0
+IN meritve, ki so od ”Sensor3” in je meritev < 0, z ENIM querry-jem.
+5/6
+Primer zaˇcetka kode za nalogo 4
+1 from influxdb import InfluxDBClient
+2
+3
+4 host = ’149.62.71.186 ’
+5 user = ’ admin ’
+6 password = ’ fis_influx ’
+7 port =8086
+8 client = InfluxDBClient ( host , port , user , password )
 
 
 # Beauty Loyalty App – Angular & Node.js
