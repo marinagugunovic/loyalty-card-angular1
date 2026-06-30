@@ -18,6 +18,95 @@ poˇsilje sporoˇcilo, ter program za streˇznik, ki prejeme sporoˇcilo, vse sk
 specificirano zgoraj.
 
 
+
+ odgovor na prvo server code:import socketserver
+
+HOST = "localhost"
+PORT = 12345
+
+HEADER_SIZE = 5
+
+def recv_exact(sock, size):
+    data = b""
+    while len(data) < size:
+        packet = sock.recv(size - len(data))
+        if not packet:
+            raise ConnectionError("Povezava je prekinjena.")
+        data += packet
+    return data
+
+
+class MyServer(socketserver.BaseRequestHandler):
+    def handle(self):
+        # 1. Preberemo 5-bytno obvestilo: koliko sporočil pride
+        n_bytes = recv_exact(self.request, HEADER_SIZE)
+        N = int(n_bytes.decode())
+
+        print(f"Client bo poslal {N} sporočil.")
+
+        # 2. Preberemo N headerjev, vsak je 5 bytov in pove velikost sporočila
+        sizes = []
+        for i in range(N):
+            size_bytes = recv_exact(self.request, HEADER_SIZE)
+            size = int(size_bytes.decode())
+            sizes.append(size)
+
+        print("Velikosti sporočil:", sizes)
+
+        # 3. Preberemo vseh N sporočil
+        for i, size in enumerate(sizes):
+            message_bytes = recv_exact(self.request, size)
+            message = message_bytes.decode("utf-8")
+            print(f"Sporočilo {i+1}: {message}")
+
+
+server = socketserver.TCPServer((HOST, PORT), MyServer)
+
+print(f"Server teče na {HOST}:{PORT}")
+server.serve_forever()
+
+
+
+Client code: import socket
+
+HOST = "localhost"
+PORT = 12345
+
+HEADER_SIZE = 5
+
+def make_header(number):
+    return str(number).zfill(HEADER_SIZE).encode()
+
+
+messages = [
+    "Zdravo server",
+    "Ovo je drugo sporočilo",
+    "Konec komunikacije"
+]
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+    client.connect((HOST, PORT))
+
+    # 1. Pošljemo število sporočil N kot 5 bytov
+    N = len(messages)
+    client.sendall(make_header(N))
+
+    # 2. Pošljemo N 5-bytnih headerjev z velikostjo vsakega sporočila
+    encoded_messages = []
+
+    for msg in messages:
+        encoded = msg.encode("utf-8")
+        encoded_messages.append(encoded)
+
+        size = len(encoded)
+        client.sendall(make_header(size))
+
+    # 3. Pošljemo vsa sporočila
+    for encoded in encoded_messages:
+        client.sendall(encoded)
+
+print("Client je poslal vsa sporočila.")
+
 # Beauty Loyalty App – Angular & Node.js
 
 Beauty Loyalty App je frontend–backend spletna aplikacija, razvita v okviru
