@@ -1,4 +1,29 @@
 2. naloga - regex
+
+
+
+
+Zadatak 2: import re
+
+# 1. Preberemo celotno datoteko v en string
+with open("bibliografija.txt", "r", encoding="utf-8") as f:
+    besedilo = f.read()
+
+# 2. Najdemo vse BibTeX vnose
+vnosi = re.findall(r'@\w+\s*\{.*?\n\}', besedilo, flags=re.DOTALL)
+
+# 3. Preštejemo vnose, ki nimajo alineje "volume"
+brez_volume = 0
+
+for vnos in vnosi:
+    if not re.search(r'^\s*volume\s*=', vnos, flags=re.MULTILINE):
+        brez_volume += 1
+
+print("Število vnosov brez volume:", brez_volume)
+
+
+
+
 Naloga 1: Preberite celotno datoteko ”bibliografija.txt” v string, nato pa s pomoˇcjo
 regexa najdite preˇstejte ˇstevilo vnosov, ki nimajo alineje ”volume”.
 Zgornji primer nima ”volume”
