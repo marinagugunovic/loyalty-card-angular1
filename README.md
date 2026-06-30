@@ -1,3 +1,9 @@
+Marina
+
+
+
+
+
 # Beauty Loyalty App – Angular & Node.js
 
 Beauty Loyalty App je frontend–backend spletna aplikacija, razvita v okviru
