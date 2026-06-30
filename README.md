@@ -3,6 +3,19 @@ zadatak 1
 
 Maki
 
+Naloga 1: Spomnimo se naloge iz vaj, kjer smo poˇsiljali sporoˇcila s headerji. Takrat
+smo vsako sporoˇcilo pospremili z informacijo o njegovi velikosti. Tokrat bo komunikacija
+client-server podobna:
+• Najprej client poˇslje serverju 5 bytno obvestilo o tem, koliko sporoˇcil mu ˇzeli poslati,
+recimo, da je to ˇstevilo N.
+• Nato client serverju poˇslje ˇse N 5-bytnih sporoˇcil, vsako od njih sporoˇca velikost
+i-tega sporoˇcila v bytih.
+• Clinet nato poˇslje ˇse vseh N sporoˇcil serverju.
+• Server pravilno prebere vsa sporoˇcila (self.request.recv(package size) se mora
+ujemati s ˇstevilom poslanih bajtov) in jih prikaˇze pri sebi (preprost print).
+Torej: z uporabo knjiˇznic socket in/ali socketserver napiˇsite program za uporabnika, ki
+poˇsilje sporoˇcilo, ter program za streˇznik, ki prejeme sporoˇcilo, vse skupaj kot je
+specificirano zgoraj.
 
 
 # Beauty Loyalty App – Angular & Node.js
