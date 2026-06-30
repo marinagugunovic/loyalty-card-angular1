@@ -1,54 +1,12 @@
-2. naloga - regex
+3. naloga - Flask
+Spomnite se 2. naloge pri flask-vajah: S flask napiˇsite program za login.
+Program naj preveri, da je kombinacija username : password pravilna. Imate torej tri
+funkcije: funkcija na /login ima template login.html. Preko obrazca prejmemo username
+in password. Funkcija naj preveri, ali sta pravilna. Ce sta pravilna, naj uporabnika ˇ
+preusmeri na /success/<token>/<username>, kjer je <token> nakljuˇcno generiran
+string. Na temu linku pa naj spletna stran pozdravi: “zdravo, (username)” (kot na
+vajah). Ce username ali passoword nista OK, pa naj ga preusmeri na ˇ /failure.
 
-
-
-
-Zadatak 2: import re
-
-# 1. Preberemo celotno datoteko v en string
-with open("bibliografija.txt", "r", encoding="utf-8") as f:
-    besedilo = f.read()
-
-# 2. Najdemo vse BibTeX vnose
-vnosi = re.findall(r'@\w+\s*\{.*?\n\}', besedilo, flags=re.DOTALL)
-
-# 3. Preštejemo vnose, ki nimajo alineje "volume"
-brez_volume = 0
-
-for vnos in vnosi:
-    if not re.search(r'^\s*volume\s*=', vnos, flags=re.MULTILINE):
-        brez_volume += 1
-
-print("Število vnosov brez volume:", brez_volume)
-
-
-
-
-Naloga 1: Preberite celotno datoteko ”bibliografija.txt” v string, nato pa s pomoˇcjo
-regexa najdite preˇstejte ˇstevilo vnosov, ki nimajo alineje ”volume”.
-Zgornji primer nima ”volume”
-1 @InCollection { Hoover2008 ,
-2 author = { Kevin D. Hoover },
-3 booktitle = { The New Palgrave Dictionary of Economics },
-4 publisher = { Palgrave Macmillan { UK }} ,
-5 title = { Causality in Economics and Econometrics },
-6 year = {2008} ,
-7 pages = {1 - -13} ,
-8 doi = {10.1057/978 -1 -349 -95121 -5\ _2227 -1} ,
-9 }
-Spodnji primer pa ga ima
-1 @Article { Sugihara2012 ,
-2 author = { George Sugihara and Robert May and Hao Ye and Chih - hao Hsieh and Ethan Deyle and Michael Fogarty
-and Stephan Munch },
-3 journal = { Science },
-4 title = { Detecting Causality in Complex Ecosystems },
-5 year = {2012} ,
-6 month = { oct },
-7 number = {6106} ,
-8 pages = {496 - -500} ,
-9 volume = {338} ,
-10 doi = {10.1126/ science .1227079} ,
-11 publisher = { American Association for the Advancement of Science ({ AAAS }) },
 
 # Beauty Loyalty App – Angular & Node.js
 
