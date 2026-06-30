@@ -1,4 +1,87 @@
 3. naloga - Flask
+
+
+
+odgovor 3: from flask import Flask, render_template, request, redirect, url_for
+import secrets
+
+app = Flask(__name__)
+
+# Primer pravilne kombinacije
+VALID_USERNAME = "admin"
+VALID_PASSWORD = "1234"
+
+# Shranimo token -> username
+active_users = {}
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if username == VALID_USERNAME and password == VALID_PASSWORD:
+            random_string = secrets.token_urlsafe(16)
+            active_users[random_string] = username
+
+            return redirect(url_for("success", random_string=random_string))
+
+        else:
+            return redirect(url_for("failure"))
+
+    return render_template("login.html")
+
+
+@app.route("/success/<random_string>/")
+def success(random_string):
+    username = active_users.get(random_string)
+
+    if username is None:
+        return redirect(url_for("failure"))
+
+    return f"zdravo, {username}"
+
+
+@app.route("/failure")
+def failure():
+    return "Napačen username ali password."
+
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)
+
+
+    HTML:   
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Prijava</h2>
+
+    <form method="POST" action="/login">
+        <label>Username:</label>
+        <input type="text" name="username">
+
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password">
+
+        <br><br>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+python: 
+
+app.run(debug=True, use_reloader=False)
+
 Spomnite se 2. naloge pri flask-vajah: S flask napiˇsite program za login.
 Program naj preveri, da je kombinacija username : password pravilna. Imate torej tri
 funkcije: funkcija na /login ima template login.html. Preko obrazca prejmemo username
